@@ -42,6 +42,7 @@ h1,h2,h3{font-weight:500;letter-spacing:-.02em;text-wrap:balance;margin:0}
 .serif{font-family:var(--serif);font-weight:400;letter-spacing:-.01em}
 
 /* Announcement + header */
+.announce .short{display:none}
 .announce{background:var(--ink);color:#fff;font-size:12px;letter-spacing:.06em;text-align:center;height:34px;display:flex;align-items:center;justify-content:center;padding-inline:16px}
 header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--bg);border-bottom:1px solid var(--line)}
 .hbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:68px}
@@ -96,7 +97,7 @@ header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;backgrou
 .card .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s ease, transform .8s ease}
 .card .media img.alt{opacity:0}
 .card:hover .media img.alt{opacity:1}
-.card:hover .media img{transform:scale(1.02)}
+.card:hover .media img{transform:scale(1.03)}
 .badge{position:absolute;top:10px;left:10px;background:var(--bg);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;z-index:2}
 .qadd{position:absolute;left:10px;right:10px;bottom:10px;height:42px;background:var(--bg);border:1px solid var(--ink);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;z-index:2;opacity:0;transform:translateY(6px);transition:all .25s}
 .card:hover .qadd,.qadd:focus-visible{opacity:1;transform:none}
@@ -179,8 +180,8 @@ footer{border-top:1px solid var(--line);padding-top:64px}
 
 /* PDP */
 .pdp{display:grid;grid-template-columns:55% 45%;align-items:start;border-bottom:1px solid var(--line)}
-.gal{display:grid;grid-template-columns:72px 1fr;gap:14px;padding:32px 32px 48px var(--gut-l);position:sticky;top:calc(env(safe-area-inset-top,0px) + 69px)}
-.thumbs-v{display:flex;flex-direction:column;gap:10px}
+.gal{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;padding:32px 32px 48px var(--gut-l);position:sticky;top:calc(env(safe-area-inset-top,0px) + 69px)}
+.thumbs-v{display:grid;grid-template-columns:repeat(4,72px);gap:10px}
 .thumbs-v button{width:72px;height:72px;border:1px solid transparent;border-radius:var(--radius);overflow:hidden;background:var(--surface)}
 .thumbs-v button.on{border-color:var(--ink)}
 .thumbs-v img{width:100%;height:100%;object-fit:cover}
@@ -289,23 +290,28 @@ footer{border-top:1px solid var(--line);padding-top:64px}
   .fgrid > div:first-child{grid-column:1/-1}
   .pdp{grid-template-columns:1fr}
   .gal{position:relative;top:0;grid-template-columns:1fr;padding:0}
-  .thumbs-v{display:none}
   .mainimg{border-radius:0}
-  .dots{display:flex;gap:6px;justify-content:center;padding-top:12px}
-  .dots button{width:6px;height:6px;border-radius:3px;background:var(--line)}
-  .dots button.on{background:var(--ink);width:18px}
+  .thumbs-v{grid-template-columns:repeat(4,minmax(0,1fr));padding-inline:var(--gut-l) var(--gut-r)}
+  .thumbs-v button{width:100%;height:auto;aspect-ratio:1}
   .info{padding:24px var(--gut-r) 40px var(--gut-l);border-left:0}
   .sticky-atc{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--bg);border-top:1px solid var(--line);padding:10px var(--gut-r) calc(10px + env(safe-area-inset-bottom,0px)) var(--gut-l);transform:translateY(110%);transition:transform .3s}
   .sticky-atc.on{transform:none}
   .sticky-atc .t{font-size:13px;font-weight:500;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .sticky-atc .btn{height:44px;padding:0 18px}
   .notes .wrap{grid-template-columns:1fr;gap:20px}
+  .announce .long{display:none}.announce .short{display:inline}
+  .fbar .wrap{flex-wrap:wrap;gap:10px}
+  .pills{flex:1 1 100%}
+  .sort{width:100%}.sort select{width:100%}
+  .hero-media{aspect-ratio:4/3}
+  .shop-head{padding-block:32px 20px}
+  body.pdp-on footer{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
   .sort span{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 
-<div class="announce" id="announce">Free delivery across Bangladesh on orders over ৳2,000</div>
+<div class="announce" id="announce"><span class="long">Free delivery across Bangladesh on orders over ৳2,000</span><span class="short">Free delivery over ৳2,000</span></div>
 <header class="site">
   <div class="wrap hbar">
     <div style="display:flex;align-items:center;gap:8px">
@@ -364,6 +370,8 @@ footer{border-top:1px solid var(--line);padding-top:64px}
     <li><b>Delivery and returns terms are examples</b>: ৳60 inside Dhaka, ৳120 outside, free over ৳2,000, and 7-day returns on unopened items. Ratings and review counts are also placeholders.</li>
     <li><b>Bestsellers</b> are a hand-picked set of 8 products with strong photo sets. Tell me your real top sellers.</li>
     <li><b>Your reference sites</b> (Soko Glam, SkinKraft, Purplle) shaped three retail touches on top of the minimal base: a shop-by-brand strip, star ratings on product cards, and a free-delivery progress bar in the bag.</li>
+    <li><b>Built only with Elementor, Elementor Pro and free WooCommerce.</b> To keep to that, this version drops the hover image swap on cards, the "Bestseller" card badges, the size selector, the free-delivery progress bar and the quantity buttons inside the cart drawer. Those need extra plugins or custom code. The cart drawer is Elementor Pro's Menu Cart, product grids are Loop Grids, category pills are the Taxonomy Filter, and the product page uses WooCommerce's own gallery and Add to Cart widget.</li>
+    <li><b>Key ingredients and How to use</b> will come from two custom fields on each product, using WordPress's built-in Custom Fields panel and Elementor Pro's dynamic tags. No extra plugin is needed.</li>
     <li><b>Checkout, account, search results pages and the newsletter</b> are not connected in this preview. The cart, filters, sorting and quick search all work.</li>
   </ol>
 </div></section>
@@ -422,19 +430,19 @@ function renderCart(bump) {
   const n = cart.reduce((a, i) => a + i.q, 0);
   const sub = cart.reduce((a, i) => a + i.q * bySku[i.sku].price, 0);
   const c = $("#count"); c.textContent = n; c.hidden = n === 0;
-  if (bump) { c.classList.remove("bump"); void c.offsetWidth; c.classList.add("bump"); }
+  
   $("#dcount").textContent = n ? `(${n})` : "";
   const left = FREE - sub;
-  $("#ship").innerHTML = (sub === 0 ? `Free delivery on orders over ${tk(FREE)}` : left > 0 ? `You're <b>${tk(left)}</b> away from free delivery` : `<b>You've unlocked free delivery</b>`) + `<div class="bar"><i style="width:${Math.min(100, sub / FREE * 100)}%"></i></div>`;
+  $("#ship").innerHTML = `Free delivery on orders over ${tk(FREE)}`;
   $("#items").innerHTML = cart.length ? cart.map(i => { const p = bySku[i.sku]; return `
     <div class="item">
       ${p.imgs[0] ? `<img src="${IMG + p.imgs[0]}" alt="">` : `<div class="ni"></div>`}
       <div><div class="b">${esc(p.brand)}</div><a class="t" href="#p-${p.slug}">${esc(p.title)}</a>
-        <div class="q"><button aria-label="Decrease" data-q="${p.sku}|${i.q - 1}">−</button><span>${i.q}</span><button aria-label="Increase" data-q="${p.sku}|${i.q + 1}">+</button></div></div>
+        <div class="muted" style="font-size:12px;margin-top:6px">${i.q} × ${tk(p.price)}</div></div>
       <div class="r"><span>${tk(p.price * i.q)}</span><button class="rm" data-q="${p.sku}|0">Remove</button></div>
     </div>`; }).join("") : `<div class="empty"><p>Your bag is empty</p><button class="btn ghost" data-close-shop>Shop all products</button></div>`;
   $("#dfoot").hidden = !cart.length;
-  $("#dfoot").innerHTML = `<div class="sub"><span>Subtotal</span><span>${tk(sub)}</span></div><small>Delivery and discounts are calculated at checkout.</small><button class="btn full" id="checkout">Checkout · ${tk(sub)}</button>`;
+  $("#dfoot").innerHTML = `<div class="sub"><span>Subtotal</span><span>${tk(sub)}</span></div><small>Delivery is calculated at checkout.</small><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><button class="btn ghost full" id="viewcart">View cart</button><button class="btn full" id="checkout">Checkout</button></div>`;
 }
 function openCart() { $("#drawer").classList.add("on"); $("#drawer").setAttribute("aria-hidden","false"); $("#scrim").classList.add("on"); }
 function closeAll() { ["#drawer","#mnav"].forEach(s => $(s).classList.remove("on")); $("#drawer").setAttribute("aria-hidden","true"); $("#scrim").classList.remove("on"); }
@@ -443,10 +451,10 @@ let tt; function toast(m) { const t = $("#toast"); t.textContent = m; t.classLis
 /* ---------- pieces ---------- */
 function rev(p) { let h = 0; for (const c of p.sku) h = (h * 31 + c.charCodeAt(0)) % 997; return 24 + h % 210; }
 function card(p) {
-  const img = p.imgs[0] ? `<img src="${IMG + p.imgs[0]}" alt="${esc(p.name)}" loading="lazy">` + (p.imgs[1] ? `<img class="alt" src="${IMG + p.imgs[1]}" alt="" loading="lazy">` : "")
+  const img = p.imgs[0] ? `<img src="${IMG + p.imgs[0]}" alt="${esc(p.name)}" loading="lazy">`
     : `<div class="noimg"><div><span>${esc(p.title)}</span><small>Photo needed</small></div></div>`;
   return `<article class="card">
-    <a class="media" href="#p-${p.slug}" aria-label="${esc(p.name)}">${p.best ? `<span class="badge">Bestseller</span>` : ""}${img}</a>
+    <a class="media" href="#p-${p.slug}" aria-label="${esc(p.name)}">${img}</a>
     <button class="qadd" data-add="${p.sku}" aria-label="Quick add ${esc(p.name)}"><span class="w">Quick add </span>+</button>
     <a class="meta" href="#p-${p.slug}"><span class="cat">${esc(p.brand)}</span><span class="t">${esc(p.title)}</span><span class="rt"><i>★★★★★</i> ${rev(p)}</span><span class="p">${tk(p.price)}</span></a>
   </article>`;
@@ -516,6 +524,7 @@ function shop(top, sub, brand) {
   if (sortBy === "low") list = [...list].sort((a, b) => a.price - b.price);
   if (sortBy === "high") list = [...list].sort((a, b) => b.price - a.price);
   if (sortBy === "featured") list = [...list].sort((a, b) => b.best - a.best);
+  if (sortBy === "pop") list = [...list].sort((a, b) => rev(b) - rev(a));
   const title = brand || sub || top || "Shop all";
   const desc = brand ? `Authentic ${brand}, sourced from official distributors.` : top ? TOP_DESC[top] : "Every product we carry, from cleansers to SPF to hair care.";
   const subs = top ? subsOf(top) : [];
@@ -531,7 +540,7 @@ function shop(top, sub, brand) {
       ${TOP.map(t => `<a class="pill ${t === top ? "on" : ""}" href="#shop-${slugOf(t)}" style="display:inline-flex;align-items:center">${esc(t)}</a>`).join("")}
     </div>
     <label class="sort" for="sortSel"><span class="muted">Sort</span>
-      <select id="sortSel"><option value="featured">Featured</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option></select></label>
+      <select id="sortSel"><option value="featured">Default sorting</option><option value="pop">Sort by popularity</option><option value="low">Sort by price: low to high</option><option value="high">Sort by price: high to low</option></select></label>
   </div></div>
   <div class="wrap"><p class="rcount">${list.length} product${list.length === 1 ? "" : "s"}</p></div>
   <section class="section" style="padding-top:24px"><div class="wrap"><div class="grid">${list.map(card).join("")}</div></div></section>`;
@@ -559,9 +568,8 @@ function pdp(p) {
   return `
   <section class="pdp">
     <div class="gal">
-      <div class="thumbs-v">${p.imgs.map((s, i) => `<button class="${i === gIdx ? "on" : ""}" data-g="${i}" aria-label="Show image ${i + 1}"><img src="${IMG + s}" alt=""></button>`).join("")}</div>
-      <div><div class="mainimg" id="mainimg">${main(gIdx)}</div>
-      ${p.imgs.length > 1 ? `<div class="dots">${p.imgs.map((s, i) => `<button class="${i === gIdx ? "on" : ""}" data-g="${i}" aria-label="Image ${i + 1}"></button>`).join("")}</div>` : ""}</div>
+      <div class="mainimg" id="mainimg">${main(gIdx)}</div>
+      ${p.imgs.length > 1 ? `<div class="thumbs-v">${p.imgs.map((s, i) => `<button class="${i === gIdx ? "on" : ""}" data-g="${i}" aria-label="Show image ${i + 1}"><img src="${IMG + s}" alt=""></button>`).join("")}</div>` : ""}
     </div>
     <div class="info">
       <div class="crumbs" style="margin:0"><a href="#shop">Shop</a> / <a href="#shop-${slugOf(p.top)}">${esc(p.top)}</a>${p.sub ? ` / <a href="#shop-${slugOf(p.sub)}">${esc(p.sub)}</a>` : ""}</div>
@@ -572,7 +580,6 @@ function pdp(p) {
       </div>
       <div class="price"><span>${tk(p.price)}</span><span class="ph">Placeholder price</span></div>
       <p class="benefit">${esc(p.short)}.</p>
-      <div class="opt"><h5>Size</h5><div class="vpills"><button class="vpill on">${esc((p.name.match(/(\d+\s?(ml|g))\b/i) || [,"Standard"])[1])}</button></div></div>
       <div class="buy" id="buy">
         <div class="qty"><button data-qty="-1" aria-label="Decrease quantity">−</button><span id="qv">${qty}</span><button data-qty="1" aria-label="Increase quantity">+</button></div>
         <button class="btn full" data-addq="${p.sku}">Add to bag · ${tk(p.price * qty)}</button>
@@ -597,7 +604,7 @@ function pdp(p) {
 let curP = null;
 function route() {
   const h = (location.hash || "#home").slice(1);
-  const v = $("#view"); curP = null; $("#satc").classList.remove("on");
+  const v = $("#view"); curP = null; $("#satc").classList.remove("on"); document.body.classList.toggle("pdp-on", h.startsWith("p-"));
   document.querySelectorAll(".nav a").forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + h));
   if (h.startsWith("p-")) {
     const p = P.find(x => x.slug === h.slice(2));
@@ -619,8 +626,7 @@ function route() {
 function setupSticky(p) {
   const s = $("#satc");
   s.innerHTML = `<div style="min-width:0"><div class="t">${esc(p.title)}</div><div class="muted" style="font-size:12px">${tk(p.price)}</div></div><button class="btn" data-addq="${p.sku}">Add to bag</button>`;
-  const io = new IntersectionObserver(([e]) => s.classList.toggle("on", !e.isIntersecting && e.boundingClientRect.top < 0));
-  io.observe($("#buy"));
+  s.classList.add("on");
 }
 
 /* ---------- wiring ---------- */
@@ -629,15 +635,15 @@ $("#mnav").innerHTML = `<div class="logo" style="margin-bottom:14px">Hello Skin<
 $("#fshop").innerHTML = `<li><a href="#shop">Shop all</a></li>` + TOP.map(t => `<li><a href="#shop-${slugOf(t)}">${esc(t)}</a></li>`).join("");
 
 document.addEventListener("click", e => {
-  const t = e.target.closest("[data-add],[data-addq],[data-q],[data-g],[data-qty],[data-close-shop],[data-note],#checkout,#acctBtn");
+  const t = e.target.closest("[data-add],[data-addq],[data-q],[data-g],[data-qty],[data-close-shop],[data-note],#checkout,#viewcart,#acctBtn");
   if (!t) return;
-  if (t.dataset.add) { e.preventDefault(); add(t.dataset.add, 1, false); }
+  if (t.dataset.add) { e.preventDefault(); add(t.dataset.add, 1, true); }
   else if (t.dataset.addq) { add(t.dataset.addq, qty, true); }
   else if (t.dataset.q) { const [s, q] = t.dataset.q.split("|"); setQ(s, +q); }
   else if (t.dataset.g) { gIdx = +t.dataset.g; $("#mainimg").innerHTML = `<img src="${IMG + curP.imgs[gIdx]}" alt="${esc(curP.name)}">`; document.querySelectorAll("[data-g]").forEach(b => b.classList.toggle("on", +b.dataset.g === gIdx)); }
   else if (t.dataset.qty) { qty = Math.max(1, qty + +t.dataset.qty); $("#qv").textContent = qty; document.querySelector("#buy [data-addq]").textContent = `Add to bag · ${tk(curP.price * qty)}`; }
   else if (t.hasAttribute("data-close-shop")) { closeAll(); location.hash = "#shop"; }
-  else if (t.id === "checkout") toast("Checkout isn't connected in this preview");
+  else if (t.id === "checkout" || t.id === "viewcart") toast("Cart and checkout pages aren't connected in this preview");
   else if (t.id === "acctBtn" || t.dataset.note) toast("This page isn't part of the preview yet");
 });
 $("#cartBtn").onclick = openCart;

@@ -98,7 +98,7 @@ header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backgrou
 .sdots button{width:8px;height:8px;border-radius:4px;background:rgba(31,26,28,.25);transition:width .3s}
 .sdots button.on{width:26px;background:var(--ink)}
 .sarr{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center;z-index:2}
-.sarr.l{left:-20px}.sarr.r{right:-20px}
+.sarr.l{left:max(4px, calc(var(--gl) - 20px))}.sarr.r{right:max(4px, calc(var(--gr) - 20px))}
 .sarr svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:2}
 
 /* trust */
@@ -255,12 +255,15 @@ footer .logo{color:#fff}
 .active button{height:30px;padding:0 10px;border-radius:999px;background:var(--rose);color:var(--berry);font-size:12px;font-weight:600}
 .pgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 .filterbtn{display:none}
+.pf{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pf label{display:grid;gap:4px;font-size:12px;color:var(--muted);padding:0}
+.pf input{width:100%;height:36px;border:1px solid var(--line);border-radius:8px;padding:0 10px;font:inherit;font-size:13px;color:var(--ink);background:#fff;accent-color:auto}
 .empty{grid-column:1/-1;padding:50px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:var(--r)}
 
 /* pdp */
 .pdp{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding-block:20px 30px;align-items:start}
-.gal{position:sticky;top:calc(env(safe-area-inset-top,0px) + 130px);display:grid;grid-template-columns:76px 1fr;gap:12px}
-.th{display:grid;gap:8px;align-content:start}
+.gal{position:sticky;top:calc(env(safe-area-inset-top,0px) + 130px);display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.th{display:grid;grid-template-columns:repeat(4,76px);gap:8px}
 .th button{width:76px;height:76px;border-radius:8px;overflow:hidden;border:2px solid transparent}
 .th button.on{border-color:var(--berry)}
 .th img{width:100%;height:100%;object-fit:cover}
@@ -274,7 +277,7 @@ footer .logo{color:#fff}
 .phn{font-size:11px;background:var(--mint);padding:3px 8px;border-radius:4px;font-weight:600}
 .offers{border:1px dashed var(--berry);border-radius:var(--r);padding:12px 14px;display:grid;gap:6px;font-size:13px;background:var(--band)}
 .offers b{color:var(--berry)}
-.buy{display:grid;grid-template-columns:120px 1fr 1fr;gap:10px}
+.buy{display:grid;grid-template-columns:120px 1fr;gap:10px}
 .qty{display:grid;grid-template-columns:36px 1fr 36px;border:1px solid var(--line);border-radius:var(--r);height:46px;align-items:center;text-align:center;font-weight:600}
 .qty button{height:100%;font-size:18px}
 .buy .btn{height:46px}
@@ -385,6 +388,7 @@ footer .logo{color:#fff}
   .fg{grid-template-columns:1fr 1fr}
   .fg > div:first-child,.fg > div:last-child{grid-column:1/-1}
   footer{padding-bottom:calc(70px + env(safe-area-inset-bottom,0px))}
+  body.pdp-on footer{padding-bottom:calc(130px + env(safe-area-inset-bottom,0px))}
   .shopgrid{grid-template-columns:1fr}
   .side{display:none;position:static}
   .side.on{display:grid;border:1px solid var(--line);border-radius:var(--r);padding:16px}
@@ -393,11 +397,10 @@ footer .logo{color:#fff}
   .card .b{padding:8px 10px 10px}
   .qv{display:none}
   .pdp{grid-template-columns:1fr;gap:18px}
-  .gal{position:static;grid-template-columns:1fr}
-  .th{grid-auto-flow:column;grid-auto-columns:64px;order:2;overflow-x:auto}
-  .th button{width:64px;height:64px}
+  .gal{position:static}
+  .th{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .th button{width:100%;height:auto;aspect-ratio:1}
   .buy{grid-template-columns:110px 1fr}
-  .buy .btn.line{grid-column:1/-1}
   .satc{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;position:fixed;left:0;right:0;bottom:calc(58px + env(safe-area-inset-bottom,0px));z-index:45;background:#fff;border-top:1px solid var(--line);padding:8px var(--gr) 8px var(--gl);transform:translateY(160%);transition:transform .3s}
   .satc.on{transform:none}
   .satc b{font-size:16px}
@@ -410,15 +413,14 @@ footer .logo{color:#fff}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 
-<div class="strip"><div class="wrap"><span class="tick" id="tick">Free delivery on orders over ৳2,000 · Cash on delivery all over Bangladesh</span><div class="r"><a href="#shop">Track order</a><a href="#shop">Help</a><a href="#shop">Store locator</a></div></div></div>
+<div class="strip"><div class="wrap"><span class="tick" id="tick">Free delivery on orders over ৳2,000 · Cash on delivery all over Bangladesh</span><div class="r"><a href="#shop">Help</a><a href="#shop">Contact</a></div></div></div>
 <header class="site">
   <div class="wrap hrow">
     <button class="menubtn" id="menuBtn" aria-label="Open menu"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
     <a class="logo" href="#home">Hello Skin <small>Beauty store</small></a>
-    <form class="sbox" id="sform" role="search"><label for="q" hidden>Search</label><input id="q" type="search" placeholder="Search for products, brands or concerns" autocomplete="off"><button class="go" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4-4"/></svg></button><div class="sres" id="sres" hidden></div></form>
+    <form class="sbox" id="sform" role="search"><label for="q" hidden>Search</label><input id="q" type="search" placeholder="Search products, brands, concerns" autocomplete="off"><button class="go" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4-4"/></svg></button><div class="sres" id="sres" hidden></div></form>
     <div class="hic">
       <button class="hide-m" data-note aria-label="Account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="4"/><path d="M4 20.5c1.4-4 4.4-6 8-6s6.6 2 8 6"/></svg><small>Account</small></button>
-      <button class="hide-m" data-note aria-label="Wishlist"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><small>Wishlist</small></button>
       <button data-cart aria-label="Open cart"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12.5H6.2z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><small>Cart</small><span class="cnt" data-cnt hidden>0</span></button>
     </div>
   </div>
@@ -447,7 +449,10 @@ footer .logo{color:#fff}
     <li><b>Customer reviews are sample layouts</b>, clearly labelled. Replace them with real reviews (for example from your Facebook page) before launch. Star ratings and review counts are placeholders.</li>
     <li><b>New arrivals, bestsellers and combos</b> are hand-picked to show the layout. Tell me the real ones.</li>
     <li><b>Photos</b> are your real files after the Phase 1 fixes. Strawberry Dew Spotlight Strobe Cream has no photo and shows a styled placeholder.</li>
-    <li><b>Checkout, account, wishlist and policy pages</b> are not connected in this preview. Cart, search, filters, sorting, tabs and the slider all work.</li>
+    <li><b>Built only with Elementor, Elementor Pro and free WooCommerce.</b> To keep to that, this version drops the wishlist, order tracking, store locator, "Buy now" button, percentage-off and New/Bestseller badges on cards, hover image swap, the free-delivery progress bar, cart-drawer quantity buttons, one-click "add the whole set", and "More from this brand" on product pages. Those need extra plugins or custom code.</li>
+    <li><b>How it maps to Elementor:</b> the header search is the Pro Search widget with live results, the category menu is the Pro Menu widget with dropdown content, rails are Loop Carousels, tabs are Nested Tabs, the banner is the Slides widget, the routine photo uses the Hotspot widget, and the cart drawer is the Menu Cart. Shop filters are WooCommerce's free Brand, Price and Active Filters, and sorting uses WooCommerce's own options. Brands use WooCommerce's built-in Brands; concerns and ingredients are product tags.</li>
+    <li><b>Combo kits are their own products</b> with a regular and a sale price, so they work with free WooCommerce. They don't track the stock of the items inside.</li>
+    <li><b>Checkout, account and policy pages</b> are not connected in this preview. Cart, search, filters, sorting, tabs and the slider all work.</li>
   </ol>
 </div></section>
 
@@ -507,12 +512,12 @@ function renderCart(b){
   $$("[data-cnt]").forEach(c=>{c.textContent=n;c.hidden=!n;if(b){c.classList.remove("bump");void c.offsetWidth;c.classList.add("bump")}});
   $("#dc").textContent=n?`(${n} item${n>1?"s":""})`:"";
   const left=FREE-sub;
-  $("#ship").innerHTML=(sub===0?`Add ${tk(FREE)} to get <b>free delivery</b>`:left>0?`Add <b>${tk(left)}</b> more for <b>free delivery</b>`:`<b>Yay! You've unlocked free delivery</b>`)+`<div class="bar"><i style="width:${Math.min(100,sub/FREE*100)}%"></i></div>`;
+  $("#ship").innerHTML=`<b>Free delivery</b> on orders over ${tk(FREE)}`;
   $("#items").innerHTML=cart.length?cart.map(i=>{const p=by[i.sku];return `<div class="it">${p.imgs[0]?`<img src="${IMG+p.imgs[0]}" alt="">`:`<div class="ni"></div>`}
-    <div><div class="v">${esc(p.brand)}</div><a class="t" href="#p-${p.slug}">${esc(p.title)}</a><div class="q"><button data-q="${p.sku}|${i.q-1}" aria-label="Decrease">−</button><span>${i.q}</span><button data-q="${p.sku}|${i.q+1}" aria-label="Increase">+</button></div></div>
+    <div><div class="v">${esc(p.brand)}</div><a class="t" href="#p-${p.slug}">${esc(p.title)}</a><div style="font-size:12px;color:var(--muted);margin-top:6px">${i.q} × ${tk(p.price)}</div></div>
     <div class="r"><span>${tk(p.price*i.q)}</span><button class="rm" data-q="${p.sku}|0">Remove</button></div></div>`}).join(""):`<div class="dempty"><b style="color:var(--ink);font-size:16px">Your cart is empty</b><span>Add your favourites and they'll show up here.</span><a class="btn" href="#shop" data-closeall>Start shopping</a></div>`;
   $("#df").hidden=!cart.length;
-  $("#df").innerHTML=`${save$?`<div style="display:flex;justify-content:space-between;color:var(--sale);font-size:13px;font-weight:600"><span>You save</span><span>${tk(save$)}</span></div>`:""}<div class="s"><span>Subtotal</span><span>${tk(sub)}</span></div><small>Delivery calculated at checkout. Cash on delivery available.</small><button class="btn full" id="checkout">Checkout</button><button class="btn line full" data-closeall>Continue shopping</button>`;
+  $("#df").innerHTML=`<div class="s"><span>Subtotal</span><span>${tk(sub)}</span></div><small>Delivery calculated at checkout. Cash on delivery available.</small><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><button class="btn line full" id="viewcart">View cart</button><button class="btn full" id="checkout">Checkout</button></div>`;
 }
 function openCart(){$("#drawer").classList.add("on");$("#scrim").classList.add("on")}
 function closeAll(){$("#drawer").classList.remove("on");$("#mnav").classList.remove("on");$("#scrim").classList.remove("on")}
@@ -520,12 +525,12 @@ let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on
 
 /* ---------- pieces ---------- */
 function card(p){
-  const tags=[p.d?`<span class="tg off">-${p.d}%</span>`:"",p.isNew?`<span class="tg new">New</span>`:"",BEST.has(p.sku)?`<span class="tg best">Bestseller</span>`:""].join("");
-  const img=p.imgs[0]?`<img src="${IMG+p.imgs[0]}" alt="${esc(p.name)}" loading="lazy">${p.imgs[1]?`<img class="alt" src="${IMG+p.imgs[1]}" alt="" loading="lazy">`:""}`:`<div class="noimg"><div>${esc(p.title)}<small>Photo needed</small></div></div>`;
+  const tags=p.compare?`<span class="tg off">Sale</span>`:"";
+  const img=p.imgs[0]?`<img src="${IMG+p.imgs[0]}" alt="${esc(p.name)}" loading="lazy">`:`<div class="noimg"><div>${esc(p.title)}<small>Photo needed</small></div></div>`;
   return `<article class="card"><a class="m" href="#p-${p.slug}" aria-label="${esc(p.name)}"><span class="tags">${tags}</span>${img}</a>
   <div class="b"><span class="v">${esc(p.brand)}</span><a class="t" href="#p-${p.slug}">${esc(p.title)}</a>
   <span class="rv"><i>★★★★★</i>${p.rating} (${p.reviews})</span>
-  <span class="pr"><b>${tk(p.price)}</b>${p.compare?`<s>${tk(p.compare)}</s><span class="pct">${p.d}% off</span>`:""}</span>
+  <span class="pr"><b>${tk(p.price)}</b>${p.compare?`<s>${tk(p.compare)}</s>`:""}</span>
   <button class="add" data-add="${p.sku}">Add to cart</button></div></article>`;
 }
 const ARR=d=>`<svg viewBox="0 0 24 24"><path d="${d==="l"?"m15 5-7 7 7 7":"m9 5 7 7-7 7"}"/></svg>`;
@@ -574,39 +579,41 @@ function home(){
   <section class="sec band"><div class="wrap"><div class="sh"><h2>Shop the <em>morning routine</em></h2></div>
     <div class="look"><div class="ph"><img src="${IMG+by["HS-MIN-002"].imgs[1]}" alt="Morning routine" loading="lazy">${pos.map((p,i)=>`<a class="hot" href="#p-${rprods[i].slug}" style="left:${p[0]}%;top:${p[1]}%" aria-label="${esc(rprods[i].title)}">${i+1}</a>`).join("")}</div>
     <div class="lst">${rprods.map((p,i)=>`<div class="lrow"><span class="n">${i+1}</span><img src="${IMG+p.imgs[0]}" alt=""><div><div style="font-size:11px;color:var(--berry);font-weight:700;text-transform:uppercase;letter-spacing:.06em">${["Cleanse","Treat","Moisturise","Protect"][i]} · ${esc(p.brand)}</div><a class="t" href="#p-${p.slug}">${esc(p.title)}</a><div class="pr"><b>${tk(p.price)}</b></div></div><button class="btn line" data-add="${p.sku}" style="height:34px;padding:0 12px">Add</button></div>`).join("")}
-      <div class="lsum"><span>4 products · <b>${tk(rsum)}</b></span><button class="btn" data-set="${ROUTINE.join(",")}">Add set to cart</button></div></div></div></div></section>
+      <div class="lsum"><span>4 products · <b>${tk(rsum)}</b></span><a class="va" href="#c-face-care" style="font-size:13px;font-weight:600;color:var(--berry);border-bottom:1px solid">Shop face care</a></div></div></div></div></section>
   <section class="sec"><div class="wrap"><div class="sh"><h2>Trending categories</h2></div><div class="trend">${[...TOP.map(t=>[t,"#c-"+slugOf(t),P.find(p=>p.top===t&&p.imgs[0])]),["Korean-style glow","#i-hyaluronic-acid",by["HS-DK-006"]],["Men's grooming","#c-hair-care",by["HS-MTX-001"]]].map(([n,h,p])=>`<a href="${h}"><img src="${IMG+p.imgs[0]}" alt="">${esc(n)}</a>`).join("")}</div></div></section>
   <section class="sec band"><div class="wrap"><div class="sh"><h2>#HelloSkin <em>speaks</em></h2><span class="sample">Sample reviews · replace before launch</span></div>
     <div class="revs">${REVIEWS.map(([n,k],i)=>{const p=by[k];return `<div class="rev"><div class="who"><span class="av">${["A","R","S"][i]}</span><div><b style="font-size:13px">Customer name</b><div class="rv"><i>★★★★★</i> Verified buyer</div></div></div><q>Sample review text. A short quote from a real Hello Skin customer about the ${esc(n)} goes here.</q><a class="pp" href="#p-${p.slug}"><img src="${IMG+p.imgs[0]}" alt=""><span><b>${esc(p.title)}</b><br><span style="color:var(--berry);font-weight:700">SHOP NOW ›</span></span></a></div>`}).join("")}</div></div></section>
   <section class="sec"><div class="wrap"><div class="sh"><h2>Popular searches</h2></div><p class="pops">${["sunscreen","vitamin c serum","salicylic acid","niacinamide","kojic acid","lip balm","hair growth serum","the derma co","dot & key","minimalist","body lotion","face wash","matrix shampoo","underarm roll-on"].map(s=>`<a href="#s-${encodeURIComponent(s).replace(/%20/g,"-").replace(/%26/g,"and")}">${esc(s)}</a>`).join("<i>|</i>")}</p>
     <div class="seo" style="margin-top:24px"><h3>Buy authentic skincare online in Bangladesh</h3><p>Hello Skin is an online beauty store for original skincare, sun care, hair care and body care. We stock ${P.length} products from ${BRANDS.length} brands, including ${BRANDS.slice(0,6).join(", ")}, sourced from official distributors.</p><p>Shop by concern, from acne and dark spots to hair fall and frizz, or by ingredient, from salicylic acid and niacinamide to vitamin C and ceramides. Every order can be paid with bKash, Nagad, card or cash on delivery, and orders over ${tk(FREE)} ship free anywhere in Bangladesh.</p><p>Not sure where to start? Our morning routine pairs a gentle cleanser, a vitamin C serum, a light moisturiser and an SPF 50 sunscreen, the four steps most skin types need in a hot, humid climate.</p></div></div></section>`;
 }
-function combos(){return COMBOS[comboTab].map(([n,ks])=>{const ps=ks.map(k=>by[k]);const sum=ps.reduce((a,p)=>a+p.price,0);const deal=Math.round(sum*0.9/10)*10;
-  return `<div class="combo"><div class="cimgs">${ps.map((p,i)=>`${i?'<span class="plus">+</span>':""}<img src="${IMG+p.imgs[0]}" alt="">`).join("")}</div><div><span class="tg off" style="display:inline-block;margin-bottom:6px">Save ${tk(sum-deal)}</span><h3>${n}</h3></div><ul>${ps.map(p=>`<li><a href="#p-${p.slug}">${esc(p.brand)} ${esc(p.title)}</a></li>`).join("")}</ul><div class="row"><span class="pr"><b>${tk(deal)}</b><s>${tk(sum)}</s></span><button class="btn" data-set="${ks.join(",")}">Add combo</button></div></div>`}).join("")}
-function concern(){const list=CONCERNS[concernTab];const [n,re]=list[concernI]||list[0];const ps=matches(re);
-  return `<div class="chips">${list.map(([c],i)=>`<button class="chip ${i===concernI?"on":""}" data-chip="${i}">${c}</button>`).join("")}</div>${rail(ps.slice(0,10),"r-con")}<div style="margin-top:14px"><a class="va" style="font-size:13px;font-weight:600;color:var(--berry);border-bottom:1px solid" href="#k-${slugOf(n)}">View all ${ps.length} for ${esc(n)}</a></div>`}
+function combos(){return COMBOS[comboTab].map(([n,ks])=>{const ps=ks.map(k=>by[k]);const sum=ps.reduce((a,p)=>a+p.price,0);const deal=Math.round(sum*0.9/10)*10;const kit="KIT-"+slugOf(n);
+  if(!by[kit])by[kit]={sku:kit,name:"Hello Skin "+n,title:n,brand:"Hello Skin kit",price:deal,compare:sum,imgs:[ps[0].imgs[0]],slug:ps[0].slug};
+  return `<div class="combo"><div class="cimgs">${ps.map((p,i)=>`${i?'<span class="plus">+</span>':""}<img src="${IMG+p.imgs[0]}" alt="">`).join("")}</div><div><span class="tg off" style="display:inline-block;margin-bottom:6px">Sale</span><h3>${n}</h3></div><ul>${ps.map(p=>`<li><a href="#p-${p.slug}">${esc(p.brand)} ${esc(p.title)}</a></li>`).join("")}</ul><div class="row"><span class="pr"><b>${tk(deal)}</b><s>${tk(sum)}</s></span><button class="btn" data-add="${kit}">Add kit</button></div></div>`}).join("")}
+function concern(){const list=CONCERNS[concernTab];const ps=[...new Set(list.flatMap(([n,re])=>matches(re)))];
+  return `<div class="chips">${list.map(([c,re])=>`<a class="chip" href="#k-${slugOf(c)}" style="display:inline-flex;align-items:center">${c} <span style="color:var(--muted);margin-left:6px">${matches(re).length}</span></a>`).join("")}</div>${rail(ps.slice(0,10),"r-con")}`}
 
 /* ---------- shop ---------- */
-let sortBy="popular", fBrands=new Set(), fPrice="";
+let sortBy="menu", fBrands=new Set(), fPrice="";
 function shop(ctx){
   let base=ctx.list;
   const brandCounts=BRANDS.map(b=>[b,base.filter(p=>p.brand===b).length]).filter(x=>x[1]);
-  let list=base.filter(p=>(!fBrands.size||fBrands.has(p.brand))&&(!fPrice||(fPrice==="a"?p.price<600:fPrice==="b"?p.price>=600&&p.price<=1000:p.price>1000)));
+  let list=base.filter(p=>(!fBrands.size||fBrands.has(p.brand))&&(!fPrice||(p.price>=+fPrice.split("-")[0]&&p.price<=+fPrice.split("-")[1])));
   if(sortBy==="low")list=[...list].sort((a,b)=>a.price-b.price);
   if(sortBy==="high")list=[...list].sort((a,b)=>b.price-a.price);
-  if(sortBy==="disc")list=[...list].sort((a,b)=>b.d-a.d);
-  if(sortBy==="popular")list=[...list].sort((a,b)=>BEST.has(b.sku)-BEST.has(a.sku)||b.reviews-a.reviews);
-  const pr=[["a","Under ৳600"],["b","৳600 – ৳1,000"],["c","Over ৳1,000"]];
+  if(sortBy==="rating")list=[...list].sort((a,b)=>b.rating-a.rating);
+  if(sortBy==="popular")list=[...list].sort((a,b)=>b.reviews-a.reviews);
+  if(sortBy==="date")list=[...list].sort((a,b)=>b.isNew-a.isNew);
+  const lo=Math.min(...base.map(p=>p.price)), hi=Math.max(...base.map(p=>p.price)); const [cmin,cmax]=fPrice?fPrice.split("-").map(Number):[lo,hi];
   const subs=ctx.top?subsOf(ctx.top):[];
   return `<div class="wrap"><div class="crumbs"><a href="#home">Home</a> › ${ctx.top&&ctx.sub?`<a href="#c-${slugOf(ctx.top)}">${esc(ctx.top)}</a> › `:""}${esc(ctx.title)}</div>
   <div class="shophead"><div><h1>${esc(ctx.title)}</h1><p>${base.length} products</p></div></div>
   <div class="shopgrid"><aside class="side" id="side">
     ${subs.length?`<div><h4>Category</h4>${subs.map(s=>`<a href="#c-${slugOf(s)}" style="display:block;padding:4px 0;font-size:13px;${s===ctx.sub?"color:var(--berry);font-weight:700":""}">${esc(s)}</a>`).join("")}</div>`:`<div><h4>Category</h4>${TOP.map(t=>`<a href="#c-${slugOf(t)}" style="display:block;padding:4px 0;font-size:13px;${t===ctx.top?"color:var(--berry);font-weight:700":""}">${esc(t)}</a>`).join("")}</div>`}
     <div><h4>Brand</h4>${brandCounts.map(([b,c])=>`<label><input type="checkbox" data-fb="${esc(b)}" ${fBrands.has(b)?"checked":""}>${esc(b)}<span>${c}</span></label>`).join("")}</div>
-    <div><h4>Price</h4>${pr.map(([v,l])=>`<label><input type="radio" name="fp" data-fp="${v}" ${fPrice===v?"checked":""}>${l}</label>`).join("")}${fPrice?`<button data-fp="" style="font-size:12px;color:var(--berry);margin-top:4px">Clear price</button>`:""}</div>
+    <div><h4>Filter by price</h4><div class="pf"><label for="pmin">Min<input id="pmin" type="number" value="${cmin}" min="0" step="50"></label><label for="pmax">Max<input id="pmax" type="number" value="${cmax}" min="0" step="50"></label></div><button class="btn line" id="pfgo" style="height:34px;margin-top:8px">Filter</button></div>
   </aside>
-  <div><div class="toolbar"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="filterbtn" id="fbtn">Filter</button><div class="active">${[...fBrands].map(b=>`<button data-fb="${esc(b)}" data-off>${esc(b)} ×</button>`).join("")}${fPrice?`<button data-fp="">${pr.find(x=>x[0]===fPrice)[1]} ×</button>`:""}</div></div>
-    <label for="sortSel" style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)">Sort by <select id="sortSel"><option value="popular">Popularity</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option><option value="disc">Biggest discount</option></select></label></div>
+  <div><div class="toolbar"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="filterbtn" id="fbtn">Filter</button><div class="active">${[...fBrands].map(b=>`<button data-fb="${esc(b)}" data-off>${esc(b)} ×</button>`).join("")}${fPrice?`<button data-fp="">${tk(cmin)} – ${tk(cmax)} ×</button>`:""}</div></div>
+    <label for="sortSel" style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)">Sort by <select id="sortSel"><option value="menu">Default sorting</option><option value="popular">Sort by popularity</option><option value="rating">Sort by average rating</option><option value="date">Sort by latest</option><option value="low">Sort by price: low to high</option><option value="high">Sort by price: high to low</option></select></label></div>
     <div class="pgrid">${list.length?list.map(card).join(""):`<div class="empty">No products match these filters. <button data-clear style="color:var(--berry);font-weight:700">Clear filters</button></div>`}</div></div></div></div>`;
 }
 
@@ -619,20 +626,19 @@ function pdp(p){
   const brandMore=P.filter(x=>x.brand===p.brand&&x.sku!==p.sku).slice(0,10);
   const main=p.imgs[gI]?`<img src="${IMG+p.imgs[gI]}" alt="${esc(p.name)}">`:`<div class="noimg"><div>${esc(p.title)}<small>Photo needed</small></div></div>`;
   return `<div class="wrap"><div class="crumbs"><a href="#home">Home</a> › <a href="#c-${slugOf(p.top)}">${esc(p.top)}</a>${p.sub?` › <a href="#c-${slugOf(p.sub)}">${esc(p.sub)}</a>`:""} › ${esc(p.title)}</div>
-  <section class="pdp"><div class="gal"><div class="th">${p.imgs.map((s,i)=>`<button class="${i===gI?"on":""}" data-g="${i}" aria-label="Image ${i+1}"><img src="${IMG+s}" alt=""></button>`).join("")}</div><div class="mainimg" id="mainimg">${main}</div></div>
+  <section class="pdp"><div class="gal"><div class="mainimg" id="mainimg">${main}</div>${p.imgs.length>1?`<div class="th">${p.imgs.map((s,i)=>`<button class="${i===gI?"on":""}" data-g="${i}" aria-label="Image ${i+1}"><img src="${IMG+s}" alt=""></button>`).join("")}</div>`:""}</div>
   <div class="pi"><a class="v" href="#b-${slugOf(p.brand)}">${esc(p.brand)}</a><h1>${esc(p.title)}</h1>
     <div class="rv" style="font-size:13px"><i>★★★★★</i> ${p.rating} · ${p.reviews} ratings <span class="phn">Placeholder</span></div>
     <div class="pr"><b>${tk(p.price)}</b>${p.compare?`<s>${tk(p.compare)}</s><span class="tg off">-${p.d}%</span>`:""}<span class="phn">Placeholder price</span></div>
     <p style="margin:0">${esc(p.short)}.</p>
-    <div class="offers"><span><b>Free delivery</b> on orders over ${tk(FREE)}</span><span><b>Combo deal:</b> save 10% when bought in a routine set</span><span><b>bKash</b> and <b>Nagad</b> accepted · Cash on delivery</span></div>
-    <div class="buy" id="buy"><div class="qty"><button data-qty="-1" aria-label="Decrease">−</button><span id="qv">${qty}</span><button data-qty="1" aria-label="Increase">+</button></div><button class="btn" data-addq="${p.sku}">Add to cart</button><button class="btn line" data-buynow="${p.sku}">Buy now</button></div>
+    <div class="offers"><span><b>Free delivery</b> on orders over ${tk(FREE)}</span><span><b>bKash</b> and <b>Nagad</b> accepted · Cash on delivery</span></div>
+    <div class="buy" id="buy"><div class="qty"><button data-qty="-1" aria-label="Decrease">−</button><span id="qv">${qty}</span><button data-qty="1" aria-label="Increase">+</button></div><button class="btn" data-addq="${p.sku}">Add to cart</button></div>
     <div class="del"><div>${IC.orig}100% original</div><div>${IC.cod}Cash on delivery</div><div>${IC.ret}7-day returns</div></div>
     <div class="acc"><details open><summary>Description</summary><div class="bd">${esc(p.short)}. ${esc(p.brand)} · ${esc(p.sub||p.top)}.</div></details>
     <details><summary>Key ingredients</summary><div class="bd"><span class="draft">Draft copy</span><br>${esc(p.short)}. Full ingredient list to be added from the pack.</div></details>
     <details><summary>How to use</summary><div class="bd"><span class="draft">Draft copy</span><ul>${how.map(h=>`<li>${h}</li>`).join("")}</ul></div></details>
     <details><summary>Delivery &amp; returns</summary><div class="bd"><span class="draft">Example terms</span><ul><li>Inside Dhaka ৳60, 1–2 days. Outside Dhaka ৳120, 2–4 days.</li><li>Free over ${tk(FREE)}.</li><li>Unopened items returnable within 7 days.</li></ul></div></details></div>
   </div></section>
-  ${brandMore.length?`<section class="sec"><div class="sh"><h2>More from ${esc(p.brand)}</h2><a class="va" href="#b-${slugOf(p.brand)}">View all</a></div>${rail(brandMore,"r-brand")}</section>`:""}
   <section class="sec"><div class="sh"><h2>You may also like</h2></div>${rail(related,"r-rel")}</section></div>`;
 }
 
@@ -656,7 +662,7 @@ function ctxFor(h){
 let lastH="";
 function route(){
   const h=(location.hash||"#home").slice(1), v=$("#view");
-  clearInterval(slideT); curP=null; $("#satc").classList.remove("on");
+  clearInterval(slideT); curP=null; $("#satc").classList.remove("on"); document.body.classList.toggle("pdp-on",h.startsWith("p-"));
   if(h!==lastH&&!h.startsWith("p-")){fBrands.clear();fPrice=""}
   $$(".mi > a").forEach(a=>a.classList.toggle("on",h.startsWith("c-")&&a.getAttribute("href")==="#"+h));
   if(h.startsWith("p-")){const p=P.find(x=>x.slug===h.slice(2));if(p){curP=p;gI=0;qty=1;v.innerHTML=pdp(p);sticky(p)}}
@@ -668,7 +674,7 @@ function rerender(){const y=scrollY;route();window.scrollTo(0,y)}
 function startSlides(){slideT=setInterval(()=>goSlide(slideI+1),5000)}
 function goSlide(i){slideI=(i+SLIDES.length)%SLIDES.length;$$(".slide").forEach((s,j)=>s.classList.toggle("on",j===slideI));$$(".sdots button").forEach((s,j)=>s.classList.toggle("on",j===slideI))}
 function sticky(p){const s=$("#satc");s.innerHTML=`<div><b>${tk(p.price)}</b>${p.compare?` <s style="color:var(--muted);font-size:12px">${tk(p.compare)}</s>`:""}</div><button class="btn full" data-addq="${p.sku}">Add to cart</button>`;
-  new IntersectionObserver(([e])=>s.classList.toggle("on",!e.isIntersecting&&e.boundingClientRect.top<0)).observe($("#buy"))}
+  s.classList.add("on")}
 
 /* ---------- static ---------- */
 $("#mega").innerHTML=TOP.map((t,ti)=>{const subs=subsOf(t);const ps=P.filter(p=>p.top===t);const feat=ps.find(p=>BEST.has(p.sku)&&p.imgs[0])||ps.find(p=>p.imgs[0]);
@@ -683,9 +689,9 @@ $("#fshop").innerHTML=TOP.map(t=>`<li><a href="#c-${slugOf(t)}">${esc(t)}</a></l
 
 /* ---------- events ---------- */
 document.addEventListener("click",e=>{
-  const t=e.target.closest("[data-add],[data-addq],[data-buynow],[data-set],[data-q],[data-g],[data-qty],[data-rail],[data-slide],[data-ctab],[data-otab],[data-chip],[data-fp],[data-off],[data-clear],[data-cart],[data-closeall],[data-note],#checkout,#fbtn,#bmenu,#menuBtn,#dclose,#scrim");
+  const t=e.target.closest("[data-add],[data-addq],[data-buynow],[data-set],[data-q],[data-g],[data-qty],[data-rail],[data-slide],[data-ctab],[data-otab],[data-chip],[data-fp],[data-off],[data-clear],#pfgo,[data-cart],[data-closeall],[data-note],#checkout,#viewcart,#fbtn,#bmenu,#menuBtn,#dclose,#scrim");
   if(!t)return; const d=t.dataset;
-  if(d.add){e.preventDefault();add(d.add)}
+  if(d.add){e.preventDefault();add(d.add,1,true)}
   else if(d.addq)add(d.addq,qty,true);
   else if(d.buynow){add(d.buynow,qty,true)}
   else if(d.set){const ks=d.set.split(",");addMany(ks,ks.length+" products")}
@@ -700,9 +706,10 @@ document.addEventListener("click",e=>{
   else if(d.off!==undefined&&d.fb){fBrands.delete(d.fb);rerender()}
   else if(d.fp!==undefined&&t.tagName==="BUTTON"){fPrice="";rerender()}
   else if(d.clear!==undefined){fBrands.clear();fPrice="";rerender()}
+  else if(t.id==="pfgo"){fPrice=`${+$("#pmin").value||0}-${+$("#pmax").value||99999}`;rerender()}
   else if(d.cart!==undefined)openCart();
   else if(d.closeall!==undefined)closeAll();
-  else if(t.id==="checkout")toast("Checkout isn't connected in this preview");
+  else if(t.id==="checkout"||t.id==="viewcart")toast("Cart and checkout pages aren't connected in this preview");
   else if(d.note!==undefined)toast("This page isn't part of the preview yet");
   else if(t.id==="fbtn")$("#side").classList.toggle("on");
   else if(t.id==="bmenu"||t.id==="menuBtn"){$("#mnav").classList.add("on");$("#scrim").classList.add("on")}
